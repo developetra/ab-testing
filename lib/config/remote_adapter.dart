@@ -16,7 +16,7 @@ class RemoteConfigAdapter implements UpdatableConfigAdapter {
   bool get local => false;
 
   /// The init method will only initialize the previously loaded values
-  /// of the remote config. IF the specified value parameter is empty,
+  /// of the remote config. If the specified value parameter is empty,
   /// the RemoteConfigAdapter will stay uninitialized.
   @override
   Future<void> init(Iterable<ConfigItem> items) async {

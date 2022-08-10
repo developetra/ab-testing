@@ -8,13 +8,16 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// Initialize firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   await initServices();
+
   runApp(MultiProvider(
     providers: serviceProviders,
     child: const App(),
-    // child: const BasicApp(),
   ));
 }

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:ab_testing/utility/layout.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +14,12 @@ class BasicApp extends StatelessWidget {
     return MaterialApp(
       title: 'A/B Testing',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.teal),
+      theme: ThemeData(scaffoldBackgroundColor: const Color(0xff21022C)),
       home: FutureBuilder<FirebaseRemoteConfig>(
           future: setupRemoteConfig(),
           builder: (context, snapshot) {
             return snapshot.hasData
-                ? _HomePage(title: 'A/B Testing', remoteConfig: snapshot.data!)
+                ? _HomePage(remoteConfig: snapshot.data!)
                 : const Scaffold(body: Text('No data available'));
           }),
     );
@@ -41,9 +42,7 @@ class BasicApp extends StatelessWidget {
 class _HomePage extends StatefulWidget {
   final FirebaseRemoteConfig remoteConfig;
 
-  const _HomePage({Key? key, required this.title, required this.remoteConfig}) : super(key: key);
-
-  final String title;
+  const _HomePage({Key? key, required this.remoteConfig}) : super(key: key);
 
   @override
   State<_HomePage> createState() => _HomePageState();
@@ -53,15 +52,13 @@ class _HomePageState extends State<_HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               'Button color: ${widget.remoteConfig.getString('button_color')}',
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: dp(14)),
             ),
           ],
         ),

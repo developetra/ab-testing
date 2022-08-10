@@ -44,7 +44,7 @@ class ConfigProvider {
 
   Future<void> init() async {
     await Future.wait(_adapters.map((adapter) => adapter.init(items)));
-    update(force: true); //TODO: delete force
+    update();
   }
 
   Future<void> update({bool force = false}) async {

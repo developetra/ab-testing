@@ -4,9 +4,10 @@ import 'package:ab_testing/config/value.dart';
 enum ExampleEnum { standard, control, enabled }
 
 class TestConfig {
+  /// ConfigProvider that contains the local and remote config adapters.
   late final ConfigProvider _provider;
 
-  // Config values for tests. These properties are truncated to 24 characters in Firebase Analytics
+  /// Config values for tests.
   final ConfigValue<bool> _exampleValueBool;
   final ConfigValue<int> _exampleValueInt;
   final ConfigValue<ExampleEnum> _exampleValueEnum;
